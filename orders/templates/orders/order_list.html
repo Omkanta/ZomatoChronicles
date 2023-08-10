@@ -1,0 +1,27 @@
+{% extends 'menu/base.html' %}
+{% block content %}
+<div class="container">
+    <h1>Order List</h1>
+<ul>
+    {% for order in orders %}
+        <li style="margin-bottom: 25px;">
+            <strong>Order #{{ order.id }} - {{ order.customer_name }} </strong><br>
+            Order Date: {{ order.order_date }}
+            <p>Order Status: {{ order.status }}</p>
+
+            <form class="form-group" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="order_id" value="{{ order.id }}">
+                <select name="new_status">
+                    <option value="received" {% if order.status == 'received' %}selected{% endif %}>Received</option>
+                    <option value="preparing" {% if order.status == 'preparing' %}selected{% endif %}>Preparing</option>
+                    <option value="ready" {% if order.status == 'ready' %}selected{% endif %}>Ready for Pickup</option>
+                    <option value="delivered" {% if order.status == 'delivered' %}selected{% endif %}>Delivered</option>
+                </select>
+                <input type="submit" class="btn con-btn" value="Update Status">
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+</div>
+{% endblock %}

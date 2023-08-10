@@ -1,0 +1,18 @@
+{% extends 'menu/base.html' %}
+{% block content %}
+<div class="container">
+    
+<h1>Take Order</h1>
+<form class="form-group" method="post">
+    {% csrf_token %}
+    <label for="customer_name">Customer Name:</label>
+    <input type="text" name="customer_name"><br>
+    <h2>Select Dishes:</h2>
+    {% for dish in dishes %}
+        <label>{{ dish.name }} - ${{ dish.price }}</label>
+        <span>Quantity: </span> <input type="number" name="dish_{{ dish.id }}" value="0" min="0"><br>
+    {% endfor %}
+    <input type="submit" class="btn con-btn" value="Place Order">
+</form>
+</div>
+{% endblock %}

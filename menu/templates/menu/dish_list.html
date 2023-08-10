@@ -1,0 +1,15 @@
+{% extends 'menu/base.html' %}
+{% block content %}
+<div class="container">
+    <h1>Dish List</h1>
+<ul>
+    {% for dish in dishes %}
+    <div style="display: flex; justify-content: space-around; gap: 10px;">
+        <li>{{ dish.name }} - ${{ dish.price }} ({% if dish.availability %}Available{% else %}Not Available{% endif %})</li>
+        <a href="{% url 'edit_dish' dish.id %}" class="btn edit-btn">Edit</a>
+        <a href="{% url 'delete_dish' dish.id %}" class="btn delete-btn">Delete</a>
+    </div>
+    {% endfor %}
+</ul>
+</div>
+{% endblock %}

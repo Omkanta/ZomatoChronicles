@@ -1,0 +1,18 @@
+{% extends 'menu/base.html' %}
+{% block content %}
+<div  class="container">
+    <h1>Confirm Delete</h1>
+<p>Are you sure you want to delete the following dish?</p>
+<p>Name: {{ dish.name }}</p>
+<p>Price: ${{ dish.price }}</p>
+<p>Availability: {% if dish.availability %}Available{% else %}Not Available{% endif %}</p>
+
+<form method="post">
+    {% csrf_token %}
+    <input class="btn delete-btn" type="submit" value="Delete">
+    <a id="delete_btn" href="{% url 'dish_list' %}">Cancel</a>
+</form>
+
+
+</div>
+{% endblock %}

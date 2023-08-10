@@ -1,0 +1,18 @@
+{% extends 'menu/base.html' %}
+{% block content %}
+<div class="container">
+    <h1>Add Dish</h1>
+<form class="form-group" method="post">
+    {% csrf_token %}
+    <label for="name">Name of the dish: </label>
+    <input type="text" name="name"><br>
+    <label for="price">Price: </label>
+    <input type="text" name="price"><br>
+    <div>
+        <label for="availability">Availability: </label>
+        <input type="checkbox" name="availability">
+    </div><br>
+    <input type="submit" class="btn con-btn" value="Add Dish">
+</form>
+</div>
+{% endblock %}
